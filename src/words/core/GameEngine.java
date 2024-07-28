@@ -92,6 +92,11 @@ public class GameEngine extends javax.swing.JFrame {
     		
     	}
         public void run() {
+            if (gamecontroller == null) {
+                JOptionPane.showMessageDialog(GameScreen, "Cannot Play game. Perhaps you forgot to click 'Begin New Game'?");
+                //System.out.println("Cannot Play game. Perhaps you forgot to click 'Begin New Game'?");
+                return;
+            }
             try {
             	int this_round = 0;
                 Boolean play = true;
