@@ -31,7 +31,6 @@ public class InteractivePlayer extends Player {
                    int totalRounds, ArrayList<String> playerList,
                    SecretState secretstate, int playerID) {
 
-        logger.info("MY TURN!");
         try {
             String bid = JOptionPane.showInputDialog("How much do you want to bid for " + bidLetter.getCharacter() + "? ");
             return Integer.parseInt(bid);
