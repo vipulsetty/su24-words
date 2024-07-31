@@ -103,7 +103,7 @@ public class GameController {
             if(isThisBidOk(gc_local) == true)
             {
                 conductAuction(gc_local,bidLetter);
-                log.info("RESULT: " + thisBid.winnerID);
+                //log.info("RESULT: " + thisBid.winnerID);
                 for (int i = 0; i < gc_local.PObjectList.size(); i++) {
                     Player player = gc_local.PObjectList.get(i);
                     player.bidResult(thisBid);

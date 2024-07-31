@@ -30,7 +30,7 @@ public class GameConfig {
 	public int num_leters_done;
 	ArrayList<String> wordbag;
 	public ArrayList<Integer> rank;
-	public final static int timeLimit = 2000; // number of ms in which player must submit bid
+	public final static int timeLimit = 10000; // number of ms in which player must submit bid
 
 	public String getPlayersPlaying()
 	{
