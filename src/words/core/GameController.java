@@ -360,7 +360,7 @@ public class GameController {
         lastBid.winnerID = winnerIndex;
         lastBid.winAmount = lastBid.bidValues.get(runnerUpIndex);
 
-        Logger.getLogger(GameController.class.getName()).info("Bid won by Player #" + (winnerIndex) + "; bid " + lastBid.bidValues.get(winnerIndex) + ", paid " + lastBid.winAmount);
+        Logger.getLogger(GameController.class.getName()).info("Bid for " + lastBid.getTargetLetter().getCharacter() + " won by Player #" + (winnerIndex) + "; bid " + lastBid.bidValues.get(winnerIndex) + ", paid " + lastBid.winAmount);
 
         pointsSpent.set(winnerIndex, pointsSpent.get(winnerIndex) + lastBid.winAmount);
         

@@ -750,7 +750,7 @@ public class GameEngine extends javax.swing.JFrame {
                 bidletter = gameconfig.BidList.get(lastbidIndex).TargetLetter.character.toString();
                 LetterLabel.setText("Current Letter: " + bidletter);
                 PlayerBids l = gameconfig.BidList.get(lastbidIndex);
-                String formatString = "<html>Status: Letter won by player %d [%s]<br>"
+                String formatString = "<html>Status: Letter " + bidletter + " won by player %d [%s]<br>"
 							+ "Winning bid: %d (Actually paid: %d)</html>";
                 int winner_id = l.getWinnerID();
 				Object formatargs[] = {
