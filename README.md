@@ -3,15 +3,15 @@
 In this project, you'll implement a player in a word game in which you bid on letters in an attempt to form high-scoring words.
 The goal is to implement a bidding strategy that will help you form better words and accrue more points without spending too much to do so.
 
-A game consists of _r_ rounds, and a round consists of _8p_ bids, in which _p_ is the number of players. 
+A game consists of _r_ rounds, and a round consists of up to _8p_ bids, in which _p_ is the number of players. 
 Although players can only play words of up to 7 letters in a round, there is no limit to the number of letters a player can collect in a round. 
 At the end of each round, points are awarded for the word that is created, all letters are reset, and then we move onto the next round. 
 At the end of the final round, the player with the most points wins.
 
 There is a common pool of 98 letters, similar to the board game Scrabble. 
-At the start of a round, each player starts with _n_ hidden ("secret") letters known only to that player, with _n_ anywhere from 0 to 7. 
-Players then bid for randomly selected letters, with each letter in turn going to the highest bidder. 
-In a single round, letters are selected without replacement, so once somebody has the single 'Z' nobody else will have a 'Z'. 
+At the start of a round, each player starts with _n_ hidden ("secret") letters known only to that player, with _n_ anywhere from 0 to 7.
+Players then bid _8p-np_ times for randomly selected letters, with each letter in turn going to the highest bidder. 
+In a single round, letters are selected without replacement. For example, since there is only one 'Z' in the pool, once somebody has the single 'Z' nobody else will have a 'Z'. 
 Letters are reset at the start of a new round.
 
 Players bid with points. 
