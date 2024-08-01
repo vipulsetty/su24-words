@@ -1,22 +1,22 @@
 # Overview
 
-In this project, you'll implement a player in a game similar to Scrabble, with the difference being that your player will bid on letters in an attempt to get the "good" ones. 
-The goal is to implement a bidding strategy that will help you form better words and accrue more points.
+In this project, you'll implement a player in a word game in which you bid on letters in an attempt to form high-scoring words.
+The goal is to implement a bidding strategy that will help you form better words and accrue more points without spending too much to do so.
 
 A game consists of _r_ rounds, and a round consists of _8p_ bids, in which _p_ is the number of players. 
 Although players can only play words of up to 7 letters in a round, there is no limit to the number of letters a player can collect in a round. 
 At the end of each round, points are awarded for the word that is created, all letters are reset, and then we move onto the next round. 
 At the end of the final round, the player with the most points wins.
 
-There is a common pool of 98 letters distributed as in Scrabble, but without the blanks. 
+There is a common pool of 98 letters, similar to the board game Scrabble. 
 At the start of a round, each player starts with _n_ hidden ("secret") letters known only to that player, with _n_ anywhere from 0 to 7. 
-Players then bid for letters, with each letter in turn (appearing in random order) going to the highest bidder. 
+Players then bid for randomly selected letters, with each letter in turn going to the highest bidder. 
 In a single round, letters are selected without replacement, so once somebody has the single 'Z' nobody else will have a 'Z'. 
 Letters are reset at the start of a new round.
 
 Players bid with points. 
 Each player starts with 100 points to enable them to bid at the start of the game. 
-As the round progresses, the point total will change as the players lose points to get letters, then gain points at the end of the round as they create words. 
+As the round progresses, the point total will change as the players spend points to get letters, then gain points at the end of the round as they create words. 
 A player cannot bid more points than they possess, and a bid of zero points is allowed. 
 Past bids are public information: every player knows how much each player has bid on each letter after each bidding cycle.
 
@@ -26,7 +26,7 @@ If there is a tie for the high bid, the simulator will choose among the highest 
 
 After all _8p_ letters have been auctioned off in the round, each player tries to make as high-scoring a word as they can. 
 A word will be considered valid if and only if it appears in a standard word list that we will supply. 
-A word scores exactly what the word would have scored in Scrabble according to the points associated with the letters. 
+The score of the word is based on the points associated with the letters (see table below). 
 In addition, a player who uses all words letters receives a 50 point bonus. 
 There is no bonus for words containing fewer than words letters. 
 The score is added to the player's total score, and the game continues with the next round. 
