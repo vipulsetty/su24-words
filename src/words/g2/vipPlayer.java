@@ -27,11 +27,46 @@ public class vipPlayer extends Player {
                    int totalRounds, ArrayList<String> playerList,
                    SecretState secretstate, int playerID) {
 
-        char bidChar = bidLetter.getCharacter();
-        /*if (secretstate.getSecretLetters().contains(bidLetter)){
-            return bidLetter.getValue();
-        }*/
+        if(!secretstate.getSecretLetters().isEmpty()){
+            char bidChar = bidLetter.getCharacter();
+            List<Character> copyLetters=new ArrayList<Character>();
+            for(Character c:myLetters){
+                copyLetters.add(c);
+            }
 
+            String bestWord = returnTestWord(copyLetters,secretstate);
+
+            if(bestWord.length()>=7){
+                return Math.min(bidLetter.getValue(),5);
+            }
+
+            int myScore;
+            if (this.scores!=null) {
+                myScore = this.scores.get(this.myID);
+            }
+            else{
+                myScore=100;
+            }
+
+            int myBid = 125 / (ScrabbleValues.letterScore(bidChar) * ScrabbleValues.getLetterFrequency(bidChar));
+            myBid = Math.min(myBid,myScore-1);
+
+            copyLetters.add(bidChar);
+
+            String newBestWord = returnTestWord(copyLetters,secretstate);
+
+            //if((ScrabbleValues.getWordScore(newBestWord)-ScrabbleValues.getWordScore(bestWord))> myBid/2 ){
+            if(newBestWord.length()>bestWord.length()){
+                return myBid;
+            }
+            else{
+                return myBid/3;
+            }
+
+        }
+
+        //DO NOT CHANGE
+        char bidChar = bidLetter.getCharacter();
         List<Character> copyLetters=new ArrayList<Character>();
         for(Character c:myLetters){
             copyLetters.add(c);
@@ -40,29 +75,17 @@ public class vipPlayer extends Player {
         String bestWord = returnTestWord(copyLetters,secretstate);
 
         if(bestWord.length()>=7){
-            return bidLetter.getValue();
+            return Math.min(bidLetter.getValue(),5);
         }
 
-        /*int myScore;
-        if (this.scores!=null) {
-            myScore = this.scores.get(this.myID);
-        }
-        else{
-            myScore=100;
-        }*/
-
-        int myBid = 100 / (ScrabbleValues.letterScore(bidChar) * ScrabbleValues.getLetterFrequency(bidChar));
-
-        //int myBid = myScore/ (ScrabbleValues.letterScore(bidChar) * ScrabbleValues.getLetterFrequency(bidChar));
-        //int myBid = 35/ (ScrabbleValues.getLetterFrequency(bidChar));
-
-        //return myBid;
+        int myBid = 75 / (ScrabbleValues.letterScore(bidChar) * ScrabbleValues.getLetterFrequency(bidChar));
+        int originalBid=myBid;
 
         copyLetters.add(bidChar);
 
         String newBestWord = returnTestWord(copyLetters,secretstate);
 
-        if((ScrabbleValues.getWordScore(newBestWord)-ScrabbleValues.getWordScore(bestWord))> myBid/2 ){
+        if((ScrabbleValues.getWordScore(newBestWord)-ScrabbleValues.getWordScore(bestWord))> originalBid/2 ){// add /2 back
             return myBid;
         }
         else{
@@ -86,15 +109,17 @@ public class vipPlayer extends Player {
         for(Character c:letters){
             copy.add(c);
         }
-        if(secretstate.getSecretLetters().size()!=0){
+
+        /*if(secretstate.getSecretLetters().size()!=0){
             copy.addAll(secretstate.getSecretLetters().stream().map(Letter::getCharacter).toList());
-        }
+        }*/
         // verbose way of building a String from a bunch of characters.
         char c[] = new char[copy.size()];
         for (int i = 0; i < c.length; i++) {
             c[i] = copy.get(i);
         }
         String s = new String(c);
+        //logger.info(s);
 
         // iterate through our word list. If we find one we can build,
         // check to see if it's an improvement on the best one we've seen.
